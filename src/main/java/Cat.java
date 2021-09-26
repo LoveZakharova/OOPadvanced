@@ -1,35 +1,24 @@
 import com.sun.webkit.dom.RangeImpl;
 
-public class Cat extends Animal {
+public class Cat {
 
-    String name;
-    final int maxRunDistance = 200;
-    final int maxSwimDistance;
-
-    {
-        maxSwimDistance = 0;
+    private String name;
+    private int appetite;
+    private boolean hungry;
+    public Cat(String name, int appetite) {
+        this.name = name;
+        this.appetite = appetite;
+        this.hungry = true;
     }
 
-    @Override
-    public void run(int d) {
-        if ((d >= 0) && (d <= maxRunDistance))
-            System.out.println(name + " пробежал " + d + "м");
-        else System.out.println(name + " не бегает столько");
+    void info() {
+        String isHungry = !hungry ? "поел и сыт" : "голоден";
+        System.out.println(name + " " + isHungry);
     }
 
-    @Override
-    public void swim(int d) {
-        System.out.println(name + " не плавает");
-    }
-
-    public static int count = 0;
-
-    public static int getCount() {
-        return Cat.count;
-    }
-
-    public Cat(){
-        Cat.count++;
+    void eat(Plate plate) {
+        if (hungry && plate.reduceFood(appetite))
+        hungry = false;
     }
 
 
